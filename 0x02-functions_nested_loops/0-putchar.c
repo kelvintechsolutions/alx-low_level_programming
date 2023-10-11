@@ -3,10 +3,10 @@
 /**
  * main - Entry point
  *
- * Return: Always 0 
+ * Return: Always 0
  */
 
-int main()
+int main(void)
 {
 
 	_putchar('_');
