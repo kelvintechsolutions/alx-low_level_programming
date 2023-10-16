@@ -1,20 +1,36 @@
 #include "main.h"
-#include <stdio.h>
 
 /**
- * print_array - prints array.
- * @b: params.
- * @m: params.
+ * _atoi - Convert a string to integer.
+ * @s: char array string.
+ * Return: first integer found in string.
  */
-void print_array(int *b, int m)
-{
-	int x = 0;
 
-	for (; x < m; x++)
+int _atoi(char *s)
+{
+	int x;
+	int h, p;
+
+	h = 0;
+	p = -1;
+	for (i = 0; s[x] != '\0'; x++)
 	{
-		printf("%d", *(b + x));
-		if (x != (m - 1))
-			printf(", ");
+		if (s[x] == '-')
+			p *= -1;
+
+		if (s[x] > 47 && s[x] < 58)
+		{
+			if (h < 0)
+				h = (h * 10) - (s[x] - '0');
+			else
+				h = (s[x] - '0') * -1;
+
+			if (s[x + 1] < 48 || s[x + 1] > 57)
+				break;
+		}
 	}
-	printf("\m");
+	if (p < 0)
+		h *= -1;
+
+	return (h);
 }
