@@ -1,36 +1,39 @@
 #include "main.h"
 
 /**
- * _atoi - Convert a string to integer.
- * @s: char array string.
- * Return: first integer found in string.
+ * _atoi - Convert a string to an integer.
+ * @s: The pointer to convert.
+ * Return: the integer.
  */
-
 int _atoi(char *s)
 {
-	int x;
-	int h, p;
+	int c = 0;
+	unsigned int r = 0;
+	int m = 1;
+	int y = 0;
 
-	h = 0;
-	p = -1;
-	for (i = 0; s[x] != '\0'; x++)
+	while (s[c])
 	{
-		if (s[x] == '-')
-			p *= -1;
-
-		if (s[x] > 47 && s[x] < 58)
+		if (s[c] == 45)
 		{
-			if (h < 0)
-				h = (h * 10) - (s[x] - '0');
-			else
-				h = (s[x] - '0') * -1;
-
-			if (s[x + 1] < 48 || s[x + 1] > 57)
-				break;
+			m *= -1;
 		}
-	}
-	if (p < 0)
-		h *= -1;
 
-	return (h);
+		while (s[c] >= 48 && s[c] <= 57)
+		{
+			y = 1;
+			r = (r * 10) + (s[c] - '0');
+			c++;
+		}
+
+		if (y == 1)
+		{
+			break;
+		}
+
+		c++;
+	}
+
+	r *= m;
+	return (r);
 }
