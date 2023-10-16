@@ -5,7 +5,6 @@
  * swap_int - a function that swaps the values of two integers.
  * @a: first value to be provided.
  * @b: Second parameter to be provided.
-
  * Return: 0 (Success).
  */
 
