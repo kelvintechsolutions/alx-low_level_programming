@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * isPrintableASCII – it determine if n is a printable ASCII char.
+ * isPrintableASCII –it determines if n is a printable ASCII char.
  * @n: AN integer.
  * Return: 1 if true, 0 if false.
  */
