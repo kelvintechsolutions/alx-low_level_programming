@@ -1,23 +1,21 @@
 #include "main.h"
+
 /**
- * string_toupper – it changes all lowercase letters of  a string to uppercase.
- * @word: it is Poiter to string.
- *
- * Return: it is a Poiter to uppercase string.
- */
-char *string_toupper(char *word)
+* string_toupper - changes all lowercase letters of a string
+* to uppercase.
+* @s: it is a string to modify.
+*
+* Return: the resultng string.
+*/
+char *string_toupper(char *s)
 {
-	int length;
+	int i;
 
-	length = 0;
-
-	while (word[length] != '\0')
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (word[length] >= 97 && word[length] <= 122)
-		{
-			word[length] = word[length] - 32;
-		}
-		length++;
+		if (s[i] >= 'a' && s[i] <= 'z')
+			s[i] = s[i] - 32;
 	}
-	return (word);
+
+	return (s);
 }
