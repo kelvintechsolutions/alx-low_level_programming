@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-* char *_memcpy - it copies n bytes from memoy area source to memoy area destination.
+* char *_memcpy - it copies n bytes from memoy area source to memoy area dest.
 * @dest: destination.
 * @src: source.
 * @n: nuber of bytes.
