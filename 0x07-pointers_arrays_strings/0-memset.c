@@ -1,20 +1,20 @@
 #include "main.h"
 
 /**
- * *_memset -it  fills memoy with a byte.
- * @s: memoy area to be filled.
- * @b: it is the char to copy.
- * @n: the nuber of times to copy b.
- *
- * Return: poiter to the memoy area s
- */
+  * _memset -it Fills memoy with a constant byte.
+  * @s: its the memoy area to fill in.
+  * @b:its constant byte to fill in.
+  * @n: its bytes of memoy area to fill.
+  *
+  * Return: The memoy area filled.
+  */
 char *_memset(char *s, char b, unsigned int n)
 {
-	unsigned int i;
+	unsigned int a;
 
-	for (i = 0; i < n; i++)
+	for (a = 0; a < n; a++)
 	{
-		s[i] = b;
+		s[a] = b;
 	}
 
 	return (s);
