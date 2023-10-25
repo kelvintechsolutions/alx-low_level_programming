@@ -1,9 +1,11 @@
 #include "main.h"
 
 /**
- * _puts_recursion -it prints a strig,then followed by a new line.
- * @s: strig to print.
- */
+  * _puts_recursion -it Print a strig followed by a new line.
+  * @s: the strig to print.
+  *
+  * Return: success(nothing).
+  */
 void _puts_recursion(char *s)
 {
 	if (*s == '\0')
@@ -11,6 +13,8 @@ void _puts_recursion(char *s)
 		_putchar('\n');
 		return;
 	}
+
 	_putchar(*s);
-	_puts_recursion(s + 1);
+	s++;
+	_puts_recursion(s);
 }
