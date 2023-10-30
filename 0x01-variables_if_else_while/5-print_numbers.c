@@ -1,15 +1,19 @@
 #include <stdio.h>
+
 /**
- * main - Entry point
- * Return:success
+  * main - Prints the numbers.
+  * Return: Always (Success).
+  */
 int main(void)
 {
-	int i;
+	char n;
 
-	for (i = 0; i < 10; i++)
+	for (n = '0'; n <= '9'; n++)
 	{
-		printf("%d", i);
+		putchar(n);
 	}
-	printf("\n");
+
+	putchar('\n');
+
 	return (0);
 }
