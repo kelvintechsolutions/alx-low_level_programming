@@ -1,40 +1,33 @@
-#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
-/**
- *create_array -it is an  array for prints a strig.
- *@size:it is the  nuber elements array.
- *@c: char.
- *Return: poiter.
- */
 
+/**
+* *create_array -it creates a array of characters,
+* and initializes it with a specific character.
+* @size:it is the size of the array to create.
+* @c:it is the  character to initialize the array c.
+* Return: pointer to the array (Successuful), NULL (unsuccessful).
+*/
 char *create_array(unsigned int size, char c)
 {
-char *buffer;
-unsigned int position;
+	char *p;
+	unsigned int i = 0;
 
-if (size == 0)
-{
-return (NULL);
-}
+	if (size == 0)
+		return (NULL);
 
-/*it will Define value with malloc*/
-buffer = (char *) malloc(size * sizeof(c));
+	p = (char *) malloc(sizeof(char) * size);
 
-if (buffer == 0)
-{
-return (NULL);
-}
+	if (p == NULL)
+		return (0);
 
-else
-{
-position = 0;
-while (position < size) /*While for an arrray*/
-{
-*(buffer + position) = c;
-position++;
-}
+	while (i < size)
+	{
+		*(p + i) = c;
+		i++;
+	}
 
-return (buffer);
-}
+	*(p + i) = '\0';
 
+	return (p);
 }
