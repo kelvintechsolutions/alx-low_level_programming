@@ -1,55 +1,43 @@
 #include "main.h"
 /**
-* argstostr -it is fuction that concatenaites all arguments of your prongram.
-*@ac: it is the count of args passed to the fuction.
-*@av:it is the array of arguments.
-*Return:it is the poiter to the new strig.
-*/
+ * argstostr -it will prints args.
+ * @ac:it will take in width of grind.
+ * @av: it will take in height of grind.
+ * Return: it will returm the args one line at a time like that.
+ */
 
 char *argstostr(int ac, char **av)
 {
-		char *new_string = NULL;
-		int k = 0, i = ac, j, sum = 0, temp = 0;
+	char *str;
+	int count = 0, a = 0, b = 0, c = 0;
 
-		if (ac == 0 || av == NULL)
-			return (NULL);
-
-		while (ac--)
-			sum += (len(av[ac]) + 1);
-		new_string = (char *) malloc(sum + 1);
-
-		if (new_string != NULL)
+	if (ac == 0 || av == NULL)
+		return (NULL);
+	while (a < ac)
+	{
+		b = 0;
+		while (av[a][b] != '\0')
 		{
-			while (k < i)
-			{
-				for (j = 0; av[k][j] != '\0'; j++)
-					new_string[j + temp] = av[k][j];
-				new_string[temp + j] = '\n';
-				temp += (j + 1);
-				k++;
-			}
-			new_string[temp] = '\0';
+			count++;
+			b++;
 		}
-		else
+		a++;
+	}
+	count = count + ac + 1;
+	str = malloc(sizeof(char) * count);
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	for (a = 0; a < ac; a++)
+	{
+		for (b = 0; av[a][b] != '\0'; b++)
 		{
-			return (NULL);
+			str[c] = av[a][b];
+			c++;
 		}
-		return (new_string);
-}
-
-/**
-*len -it  returns length of str(strig).
-*@str:it is the strig counted.
-*Return: it will return the length.
-*/
-int len(char *str)
-{
-		int len = 0;
-
-		if (str != NULL)
-		{
-			while (str[len])
-				len++;
-		}
-	return (len);
+		str[c] = '\n';
+		c++;
+	}
+	return (str);
 }
