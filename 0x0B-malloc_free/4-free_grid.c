@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 /**
- * free_grid – it is a fuction that frees a 2-dimensional grideed
+ * free_grid -it is a fuction that frees a 2-dimensional grideed
  * previously created by your (alloc_grid function).
  * @grid:it is a  double poiter to the grind.
  * @height:it is the  height of the grind.
