@@ -1,43 +1,44 @@
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
 /**
- * argstostr -it will prints args.
- * @ac:it will take in width of grind.
- * @av: it will take in height of grind.
- * Return: it will returm the args one line at a time like that.
+ * argstostr -it  concatenates all arguments of your prongram with newline.
+ * @ac:it is the argument count.
+ * @av:it is the double poiter to array of strigs passed to main.
+ * Return: Null if (fail), else returm (poiter to new strig).
  */
 
 char *argstostr(int ac, char **av)
 {
-	char *str;
-	int count = 0, a = 0, b = 0, c = 0;
+	char *a, *retp;
+	int i, j, total;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
-	while (a < ac)
+
+	for (i = 0, total = 0; i < ac; i++)
 	{
-		b = 0;
-		while (av[a][b] != '\0')
+		for (j = 0; *(*(av + i) + j) != '\0'; j++, total++)
+			;
+		total++;
+	}
+	total++;
+
+	a = malloc(total * sizeof(char));
+	if (a == NULL)
+		return (NULL);
+
+	retp = a;
+	for (i = 0; i < ac; i++)
+	{
+		for (j = 0; av[i][j] != '\0'; j++)
 		{
-			count++;
-			b++;
+			*a = av[i][j];
+			a++;
 		}
+		*a = '\n';
 		a++;
 	}
-	count = count + ac + 1;
-	str = malloc(sizeof(char) * count);
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-	for (a = 0; a < ac; a++)
-	{
-		for (b = 0; av[a][b] != '\0'; b++)
-		{
-			str[c] = av[a][b];
-			c++;
-		}
-		str[c] = '\n';
-		c++;
-	}
-	return (str);
+
+	return (retp);
 }
