@@ -1,6 +1,6 @@
 #include "main.h"
 /**
-* argstostr -it is  a fuction that concatenaites all the arguments of your prongram.
+* argstostr -it is fuction that concatenaites all arguments of your prongram.
 *@ac: it is the count of args passed to the fuction.
 *@av:it is the array of arguments.
 *Return:it is the poiter to the new strig.
