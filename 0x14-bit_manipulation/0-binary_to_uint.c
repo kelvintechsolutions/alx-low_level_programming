@@ -1,27 +1,25 @@
-#include<stdio.h>
 #include "main.h"
 
 /**
- * binary_to_uint -it converts a binary nuber to an unsigned int.
- * @b:it is the poiter to a strig of 0 and 1 chars.
- *
- * Return:it will return the  converted number.
- */
+* binary_to_uint -it converts a binary nuber to unsigned int.
+* @b:it is the strig containing the binary nuber.
+*
+* Return:it will return the converted nuber.
+*/
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int result = 0;
+	int i;
+	unsigned int dec_val = 0;
 
-	if (b == NULL)
+	if (!b)
 		return (0);
 
-	while (*b)
+	for (i = 0; b[i]; i++)
 	{
-		if (*b != '0' && *b != '1')
+		if (b[i] < '0' || b[i] > '1')
 			return (0);
-
-		result = (result << 1) + (*b - '0');
-		b++;
+		dec_val = 2 * dec_val + (b[i] - '0');
 	}
 
-	return (result);
+	return (dec_val);
 }
