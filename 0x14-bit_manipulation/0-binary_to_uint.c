@@ -1,25 +1,45 @@
+#include <stdlib.h>
+#include <stdio.h>
 #include "main.h"
 
 /**
-* binary_to_uint -it converts a binary nuber to unsigned int.
-* @b:it is the strig containing the binary nuber.
-*
-* Return:it will return the converted nuber.
-*/
+  * binary_to_uint -it converts a binary nuber to an unsigned int.
+  * @b:it is the binary string to converts.
+  * Return:it will return positive nuber converted from a binary.
+  */
 unsigned int binary_to_uint(const char *b)
 {
-	int i;
-	unsigned int dec_val = 0;
+	unsigned int len = 0, count = 0, sum = 0;
 
-	if (!b)
+	if (b == NULL)
 		return (0);
 
-	for (i = 0; b[i]; i++)
+	len = _strlen(b);
+	while (len--)
 	{
-		if (b[i] < '0' || b[i] > '1')
+		if (b[len] != 48 && b[len] != 49)
 			return (0);
-		dec_val = 2 * dec_val + (b[i] - '0');
+
+		if (b[len] == 49)
+			sum += 1 << count;
+
+		count++;
 	}
 
-	return (dec_val);
+	return (sum);
+}
+
+/**
+  * _strlen -it returns the length of a strig.
+  * @s:it is the string to count.
+  * Return:it will return the  string length.
+  */
+int _strlen(const char *s)
+{
+	int c = 0;
+
+	while (s[c])
+		c++;
+
+	return (c);
 }
