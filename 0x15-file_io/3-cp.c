@@ -1,51 +1,66 @@
 #include "main.h"
 
 /**
-* main -it copies the content of a file to another file.
-* @argc: arguement counter.
-* @argv:it is an array of arguments.
-* Return:it will always 0 if  success
-*/
-int main(int argc, char *argv[])
+  *main - copies the content of a file to another file.
+  * @argc:argument counter.
+  * @argv:it is an array of arguments.
+  * Return:0 if success
+  */
+int main(int argc, char **argv)
 {
-	int fd_r, fd_w, r, a, b;
-	char buf[BUFSIZ];
-
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	fd_r = open(argv[1], O_RDONLY);
-	if (fd_r < 0)
+
+	copy_file(argv[1], argv[2]);
+	exit(0);
+}
+
+/**
+  * copy_file -copies the content of a file.
+  * @src:source.
+  * @dest:destination.
+  * Return:0 if success.
+  */
+void copy_file(const char *src, const char *dest)
+{
+	int ofd, tfd, readed;
+	char buff[1024];
+
+	ofd = open(src, O_RDONLY);
+	if (!src || ofd == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src);
 		exit(98);
 	}
-	fd_w = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	while ((r = read(fd_r, buf, BUFSIZ)) > 0)
+
+	tfd = open(dest, O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	while ((readed = read(ofd, buff, 1024)) > 0)
 	{
-		if (fd_w < 0 || write(fd_w, buf, r) != r)
+		if (write(tfd, buff, readed) != readed || tfd == -1)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-			close(fd_r);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dest);
 			exit(99);
 		}
 	}
-	if (r < 0)
+
+	if (readed == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src);
 		exit(98);
 	}
-	a = close(fd_r);
-	b = close(fd_w);
-	if (a < 0 || b < 0)
+
+	if (close(ofd) == -1)
 	{
-		if (a < 0)
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_r);
-		if (b < 0)
-			dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_w);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", ofd);
 		exit(100);
 	}
-	return (0);
+
+	if (close(tfd) == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", tfd);
+		exit(100);
+	}
 }
